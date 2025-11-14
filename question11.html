@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+let start = parseInt(prompt("Enter start year: "));
+let end   = parseInt(prompt("Enter end year: "));
+
+let result = "Years where Jan 1 is Sunday:\n";
+
+for (let y = start; y <= end; y++) {
+    let d = new Date(y, 0, 1); // Jan = 0
+    if (d.getDay() == 0) {     // 0 = Sunday
+        result += y + "\n";
+    }
+}
+
+alert(result);
+</script>
+
+</body>
+</html>

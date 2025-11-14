@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+Email: <input type="text" id="mail">
+<button onclick="validate()">Check</button>
+
+<script>
+function validate() {
+    let email = document.getElementById("mail").value;
+
+    let atPos = email.indexOf("@");
+    let dotPos = email.lastIndexOf(".");
+
+    if (atPos > 0 && dotPos > atPos + 1 && dotPos + 2 < email.length) {
+        alert("Valid Email");
+    } else {
+        alert("Invalid Email");
+    }
+}
+</script>
+
+</body>
+</html>

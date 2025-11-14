@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<input type="text" id="t1"
+       onfocus="focusColor()"
+       onblur="blurColor()">
+
+<script>
+function focusColor() {
+    let box = document.getElementById("t1");
+    box.style.backgroundColor = "yellow";
+    box.style.color = "red";
+}
+function blurColor() {
+    let box = document.getElementById("t1");
+    box.style.backgroundColor = "white";
+    box.style.color = "black";
+}
+</script>
+
+</body>
+</html>
