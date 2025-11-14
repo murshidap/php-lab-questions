@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+let n = parseInt(prompt("Enter a number: "));
+let sum = 0;
+
+for (let i = 1; i < n; i++) {
+    if (n % i == 0)
+        sum += i;
+}
+
+if (sum == n)
+    alert(n + " is a Perfect Number");
+else if (sum > n)
+    alert(n + " is an Abundant Number");
+else
+    alert(n + " is a Deficient Number");
+</script>
+
+</body>
+</html>

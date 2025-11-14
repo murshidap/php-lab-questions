@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h3>Simple Calculator</h3>
+
+Number 1: <input type="number" id="n1"><br><br>
+Number 2: <input type="number" id="n2"><br><br>
+
+<button onclick="add()">Add</button>
+<button onclick="sub()">Subtract</button>
+<button onclick="mul()">Multiply</button>
+<button onclick="divi()">Divide</button>
+
+<br><br>
+Result: <output id="res"></output>
+
+<script>
+function add() {
+    let a = parseFloat(document.getElementById("n1").value);
+    let b = parseFloat(document.getElementById("n2").value);
+    document.getElementById("res").value = a + b;
+}
+
+function sub() {
+    let a = parseFloat(document.getElementById("n1").value);
+    let b = parseFloat(document.getElementById("n2").value);
+    document.getElementById("res").value = a - b;
+}
+
+function mul() {
+    let a = parseFloat(document.getElementById("n1").value);
+    let b = parseFloat(document.getElementById("n2").value);
+    document.getElementById("res").value = a * b;
+}
+
+function divi() {
+    let a = parseFloat(document.getElementById("n1").value);
+    let b = parseFloat(document.getElementById("n2").value);
+    document.getElementById("res").value = b === 0 ? "Cannot divide by zero" : a / b;
+}
+</script>
+
+</body>
+</html>
