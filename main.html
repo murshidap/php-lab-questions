@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGICARE - Digital Security Awareness</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Roboto:wght@300;400;500;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #120C6E, #1e1894, #2d25b3);
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Animated background elements */
+        .bg-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.4;
+            z-index: 0;
+        }
+        
+        .shape-1 {
+            width: 400px;
+            height: 400px;
+            background: #120C6E;
+            top: -100px;
+            left: -100px;
+            animation: float 15s infinite alternate;
+        }
+        
+        .shape-2 {
+            width: 300px;
+            height: 300px;
+            background: #4a42c9;
+            bottom: -50px;
+            right: -50px;
+            animation: float 20s infinite alternate-reverse;
+        }
+        
+        .shape-3 {
+            width: 250px;
+            height: 250px;
+            background: #2d25b3;
+            top: 50%;
+            left: 60%;
+            animation: float 18s infinite alternate;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            50% {
+                transform: translate(20px, 20px) rotate(10deg);
+            }
+            100% {
+                transform: translate(-20px, -20px) rotate(-10deg);
+            }
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            min-height: 100vh;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Glassmorphism card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.5);
+        }
+        
+        /* Title section */
+        .title-section {
+            text-align: left;
+            padding: 20px 0;
+            margin-bottom: 30px;
+        }
+        
+        .title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 80px;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 
+                         0 0 25px rgba(255, 255, 255, 0.6),
+                         0 0 35px rgba(255, 255, 255, 0.4),
+                         0 0 45px rgba(255, 255, 255, 0.2);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 
+                             0 0 25px rgba(255, 255, 255, 0.6),
+                             0 0 35px rgba(255, 255, 255, 0.4),
+                             0 0 45px rgba(255, 255, 255, 0.2);
+            }
+            to {
+                text-shadow: 0 0 20px rgba(255, 255, 255, 1), 
+                             0 0 30px rgba(255, 255, 255, 0.8),
+                             0 0 40px rgba(255, 255, 255, 0.6),
+                             0 0 50px rgba(255, 255, 255, 0.4);
+            }
+        }
+        
+        .subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+        }
+        
+        /* Awareness section */
+        .awareness-section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 48px;
+            font-weight: 400;
+            color: white;
+            margin-bottom: 30px;
+            text-align: center;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        /* Horizontal scrollable buttons container */
+        .buttons-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+        }
+        
+        .buttons-container {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 20px 10px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+        }
+        
+        .buttons-container::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .buttons-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        
+        .buttons-container::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+        }
+        
+        .awareness-button {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-width: 400px;
+            height: 180px;
+            flex-shrink: 0;
+        }
+        
+        .awareness-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .awareness-button.active {
+            background: rgba(255, 255, 255, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+        }
+        
+        .button-icon {
+            font-size: 48px;
+            color: white;
+            margin-bottom: 15px;
+        }
+        
+        .button-text {
+            font-size: 20px;
+            font-weight: 500;
+            color: white;
+        }
+        
+        /* Info sections */
+        .info-section {
+            display: none;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            padding: 30px;
+            margin-bottom: 30px;
+            color: white;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .info-section.active {
+            display: block;
+        }
+        
+        .info-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .info-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 36px;
+            font-weight: 400;
+            color: white;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .close-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .info-content {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        
+        .info-block {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .info-block-title {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 28px;
+            font-weight: 400;
+            color: white;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        
+        .info-block-content {
+            font-size: 18px;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .info-list {
+            list-style: none;
+            padding-left: 10px;
+        }
+        
+        .info-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+            font-size: 18px;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .info-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 22px;
+        }
+        
+        .check-list {
+            list-style: none;
+            padding-left: 10px;
+        }
+        
+        .check-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+            font-size: 18px;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .check-list li:before {
+            content: "✔";
+            position: absolute;
+            left: 0;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 18px;
+        }
+        
+        .cross-list {
+            list-style: none;
+            padding-left: 10px;
+        }
+        
+        .cross-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+            font-size: 18px;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .cross-list li:before {
+            content: "❌";
+            position: absolute;
+            left: 0;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 18px;
+        }
+        
+        .step-list {
+            list-style: none;
+            padding-left: 10px;
+            counter-reset: step-counter;
+        }
+        
+        .step-list li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 10px;
+            font-size: 18px;
+            line-height: 1.5;
+            color: rgba(255, 255, 255, 0.9);
+            counter-increment: step-counter;
+        }
+        
+        .step-list li:before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            width: 22px;
+            height: 22px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: white;
+        }
+        
+        .example-list {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        
+        .example-list li {
+            position: relative;
+            padding-left: 15px;
+            margin-bottom: 8px;
+            font-size: 16px;
+            line-height: 1.4;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .example-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 18px;
+        }
+        
+        /* Contact section */
+        .contact-section {
+            margin-top: 40px;
+        }
+        
+        .contact-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-label {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 5px;
+        }
+        
+        .form-input {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            padding: 12px 15px;
+            color: white;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .form-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .submit-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            padding: 12px 20px;
+            color: white;
+            font-size: 18px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .submit-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .contact-icon {
+            font-size: 20px;
+        }
+        
+        /* Scroll hint */
+        .scroll-hint {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            pointer-events: none;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 992px) {
+            .buttons-container {
+                flex-wrap: nowrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    <div class="bg-shape shape-3"></div>
+    
+    <div class="container">
+        <!-- Title Section -->
+        <div class="title-section">
+            <h1 class="title">DIGICARE</h1>
+            <p class="subtitle">Your Digital Security Awareness Platform</p>
+        </div>
+        
+        <!-- Awareness Section -->
+        <div class="glass-card">
+            <h2 class="section-title">Be aware of these</h2>
+            <div class="buttons-wrapper">
+                <div class="buttons-container">
+                    <div class="awareness-button" id="phishing-btn">
+                        <i class="material-icons button-icon">phishing</i>
+                        <span class="button-text">Phishing</span>
+                    </div>
+                    <div class="awareness-button" id="spam-btn">
+                        <i class="material-icons button-icon">phone_disabled</i>
+                        <span class="button-text">Spam Callers</span>
+                    </div>
+                    <div class="awareness-button" id="whatsapp-btn">
+                        <i class="material-icons button-icon">chat</i>
+                        <span class="button-text">WhatsApp Practices</span>
+                    </div>
+                    <div class="awareness-button" id="password-btn">
+                        <i class="material-icons button-icon">password</i>
+                        <span class="button-text">Weak Passwords</span>
+                    </div>
+                </div>
+                <div class="scroll-hint">
+                    <i class="material-icons">arrow_forward_ios</i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Phishing Information Section -->
+        <div class="info-section" id="phishing-info">
+            <div class="info-header">
+                <h3 class="info-title">Phishing Awareness</h3>
+                <div class="close-btn" id="close-phishing">
+                    <i class="material-icons">close</i>
+                </div>
+            </div>
+            <div class="info-content">
+                <div class="info-block">
+                    <p class="info-block-content">Phishing is when someone tries to trick you into sharing personal information like passwords, bank details, or OTPs by pretending to be a trusted person or company.</p>
+                </div>
+                
+                <div class="info-block">
+                    <h4 class="info-block-title">How Phishing Happens</h4>
+                    <ul class="info-list">
+                        <li>Fake emails or SMS saying "Your bank account is blocked"</li>
+                        <li>Calls pretending to be from a bank, delivery service, or government</li>
+                        <li>WhatsApp messages asking you to click unknown links</li>
+                        <li>Fake lottery or gift messages</li>
+                    </ul>
+                </div>
+                
+                <div class="info-block">
+                    <h4 class="info-block-title">How to Spot a Phishing Attempt</h4>
+                    <ul class="check-list">
+                        <li>Unknown or strange phone numbers</li>
+                        <li>Messages with spelling mistakes</li>
+                        <li>Pressure words like "urgent", "immediately", "your account will close"</li>
+                        <li>Links that look odd or unfamiliar</li>
+                        <li>Asking for OTP or password</li>
+                    </ul>
+                </div>
+                
+                <div class="info-block">
+                    <h4 class="info-block-title">What You Should Do</h4>
+                    <ul class="info-list">
+                        <li>Never share OTPs or passwords</li>
+                        <li>Do not click unknown links</li>
+                        <li>Call the real company using their official number</li>
+                        <li>Delete the message or block the sender</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Spam Callers Information Section -->
+        <div class="info-section" id="spam-info">
+            <div class="info-header">
+                <h3 class="info-title">Spam Callers</h3>
+                <div class="close-btn" id="close-spam">
+                    <i class="material-icons">close</i>
+                </div>
+            </div>
+            <div class="info-content">
+                <div class="info-block">
+                    <h4 class="info-block-title">Why Block Spam Calls?</h4>
+                    <p class="info-block-content">Spam callers waste time and may try to cheat you.</p>
+                </div>
+                
+                <div class="info-block">
+                    <h4 class="info-block-title">On Android Phones</h4>
+                    <ul class="info-list">
+                        <li>Open Phone app</li>
+                        <li>Go to Recent Calls</li>
+                        <li>Tap number</li>
+                        <li>Select Block / Report Spam</li>
+                    </ul>
+                </div>
+                
+                <div class="info-block">
+                    <h4 class="info-block-title">On iPhones</h4>
+                    <ul class="info-list">
+                        <li>Open Phone app</li>
+                        <li>Go to Recents</li>
+                        <li>Tap (i) next to number</li>
+                        <li>Choose Block this Caller</li>
+                    </ul>
+                </div>
+                
+                <div class="info-block">
+                    <h4 class="info-block-title">Extra Safety Tips</h4>
+                    <ul class="info-list">
+                        <li>Do not answer calls from unknown international numbers</li>
+                        <li>If someone asks for bank details, hang up immediately</li>
+                        <li>Use apps like Truecaller (optional) to identify spam calls</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- WhatsApp Practices Information Section -->
+        <div class="info-section" id="whatsapp-info">
+            <div class="info-header">
+                <h3 class="info-title">WhatsApp Practices</h3>
+                <div class="close-btn" id="close-whatsapp">
+                    <i class="material-icons">close</i>
+                </div>
+            </div>
+            <div class="info-content">
+                <div class="info-block">
+                    <h4 class="info-block-title">What Not to Share</h4>
+                    <ul class="cross-list">
+                        <li>OTPs</li>
+                        <li>Bank photos or documents</li>
+                        <li>Personal details like address, PAN, Aadhaar</li>
+                        <li>Forwarding unknown messages</li>
+                    </ul>
+                </div>
+                
+                <div class="info-block">
+                    <h4 class="info-block-title">How to Stay Safe</h4>
+                    <ul class="info-list">
+                        <li>Enable two-step verification
+                            <div style="margin-left: 20px; margin-top: 5px; font-size: 16px; color: rgba(255,255,255,0.8);">
+                                WhatsApp → Settings → Account → Two-step Verification → Set a 6-digit PIN
+                            </div>
+                        </li>
+                        <li>Only accept messages from known contacts</li>
+                        <li>Do not click blue-colored unknown links</li>
+                        <li>Do not join random WhatsApp groups</li>
+                        <li>Be careful with video calls from strangers</li>
+                    </ul>
+                </div>
+                
+                <div class="info-block">
+                    <h4 class="info-block-title">Signs of a Scam on WhatsApp</h4>
+                    <ul class="info-list">
+                        <li>Someone pretending to be a relative asking for money</li>
+                        <li>Messages with "urgent help needed"</li>
+                        <li>Links offering gifts, coupons, lottery</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Weak Passwords Information Section -->
+        <div class="info-section" id="password-info">
+            <div class="info-header">
+                <h3 class="info-title">Password Management</h3>
+                <div class="close-btn" id="close-password">
+                    <i class="material-icons">close</i>
+                </div>
+            </div>
+            <div class="info-content">
+                <div class="info-block">
+                    <h4 class="info-block-title">What Is a Password Manager?</h4>
+                    <p class="info-block-content">A password manager is an app that remembers your passwords for you, so you only need to remember one master password.</p>
+                </div>
+                
+                <div class="info-block">
+                    <h4 class="info-block-title">Easy Steps (General Guide)</h4>
+                    <ol class="step-list">
+                        <li>
+                            <strong>Install a Password Manager</strong>
+                            <div class="example-list">
+                                <ul>
+                                    <li>Bitwarden (free)</li>
+                                    <li>1Password</li>
+                                    <li>Google Password Manager (built-in)</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <strong>Create an Account</strong>
+                            <ul class="info-list" style="margin-top: 5px;">
+                                <li>Use your email</li>
+                                <li>Set a strong but memorable master password
+                                    <div style="margin-left: 20px; margin-top: 5px; font-size: 16px; color: rgba(255,255,255,0.8);">
+                                        Example: BlueTreeHouse92!
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Save a New Password</strong>
+                            <ul class="info-list" style="margin-top: 5px;">
+                                <li>When logging into any website</li>
+                                <li>The app will ask: "Save password?"</li>
+                                <li>Press Yes / Save</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Auto-Fill Passwords</strong>
+                            <ul class="info-list" style="margin-top: 5px;">
+                                <li>Next time you open a website, it will fill password for you</li>
+                                <li>You don't need to type anything</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+                
+                <div class="info-block">
+                    <h4 class="info-block-title">Safety Tips</h4>
+                    <ul class="check-list">
+                        <li>Never share your master password</li>
+                        <li>Use passwords with numbers + letters + symbols</li>
+                        <li>Do not write passwords on paper in public places</li>
+                        <li>Enable 2-Factor Authentication when possible</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contact Section -->
+        <div class="glass-card contact-section">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-content">
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-input" placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Message</label>
+                        <textarea class="form-input" rows="4" placeholder="Your message here..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="material-icons contact-icon">email</i>
+                        <span>cs@mespni.ac.in</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="material-icons contact-icon">phone</i>
+                        <span>+91 99999 88888</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="material-icons contact-icon">location_on</i>
+                        <span>MES Ponnani College, Ponnani South, Malappuram</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Get all buttons and info sections
+        const phishingBtn = document.getElementById('phishing-btn');
+        const spamBtn = document.getElementById('spam-btn');
+        const whatsappBtn = document.getElementById('whatsapp-btn');
+        const passwordBtn = document.getElementById('password-btn');
+        
+        const phishingInfo = document.getElementById('phishing-info');
+        const spamInfo = document.getElementById('spam-info');
+        const whatsappInfo = document.getElementById('whatsapp-info');
+        const passwordInfo = document.getElementById('password-info');
+        
+        const closePhishing = document.getElementById('close-phishing');
+        const closeSpam = document.getElementById('close-spam');
+        const closeWhatsapp = document.getElementById('close-whatsapp');
+        const closePassword = document.getElementById('close-password');
+        
+        // Function to close all info sections
+        function closeAllInfoSections() {
+            phishingInfo.classList.remove('active');
+            spamInfo.classList.remove('active');
+            whatsappInfo.classList.remove('active');
+            passwordInfo.classList.remove('active');
+            
+            phishingBtn.classList.remove('active');
+            spamBtn.classList.remove('active');
+            whatsappBtn.classList.remove('active');
+            passwordBtn.classList.remove('active');
+        }
+        
+        // Function to open a specific info section
+        function openInfoSection(button, infoSection) {
+            // Close all other sections first
+            closeAllInfoSections();
+            
+            // Open the selected section
+            infoSection.classList.add('active');
+            button.classList.add('active');
+            
+            // Scroll to the info section
+            setTimeout(() => {
+                infoSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 100);
+        }
+        
+        // Add click events to buttons
+        phishingBtn.addEventListener('click', function() {
+            if (phishingInfo.classList.contains('active')) {
+                closeAllInfoSections();
+            } else {
+                openInfoSection(phishingBtn, phishingInfo);
+            }
+        });
+        
+        spamBtn.addEventListener('click', function() {
+            if (spamInfo.classList.contains('active')) {
+                closeAllInfoSections();
+            } else {
+                openInfoSection(spamBtn, spamInfo);
+            }
+        });
+        
+        whatsappBtn.addEventListener('click', function() {
+            if (whatsappInfo.classList.contains('active')) {
+                closeAllInfoSections();
+            } else {
+                openInfoSection(whatsappBtn, whatsappInfo);
+            }
+        });
+        
+        passwordBtn.addEventListener('click', function() {
+            if (passwordInfo.classList.contains('active')) {
+                closeAllInfoSections();
+            } else {
+                openInfoSection(passwordBtn, passwordInfo);
+            }
+        });
+        
+        // Add click events to close buttons
+        closePhishing.addEventListener('click', function() {
+            closeAllInfoSections();
+        });
+        
+        closeSpam.addEventListener('click', function() {
+            closeAllInfoSections();
+        });
+        
+        closeWhatsapp.addEventListener('click', function() {
+            closeAllInfoSections();
+        });
+        
+        closePassword.addEventListener('click', function() {
+            closeAllInfoSections();
+        });
+    </script>
+</body>
+</html>
